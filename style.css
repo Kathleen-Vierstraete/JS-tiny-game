@@ -1,0 +1,101 @@
+body {
+    background : paleturquoise
+}
+
+h1{
+    text-align: center;
+    margin : 25px;
+    color : #7441b6
+}
+
+.playground{
+    margin: 2em auto;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: #bddfbd;
+
+}
+.square:nth-child(even){
+    background: #afdaaf;
+}
+
+.person,
+.goal {
+    position: relative;
+}
+
+.person:before,
+.goal:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    line-height: 48px;
+
+    /* font-size: 40px;
+    color: rgb(20, 71, 37); */
+}
+
+.person:before {
+    content:"🙋‍♀️";  
+}
+
+.goal:before {
+    content: "🏢"
+}
+
+.square.wall {
+    /* background: #b9a288; */
+    background : url(street-4771269_960_720.jpg); /* free to use image from pixabay */
+    background-size: 150px;
+}
+
+.message {
+    position: fixed;
+    z-index: 9;
+    right:0;
+    bottom: 0;
+    background-color: #E3DEC1;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: var(--border-normal);
+    padding: 2rem;
+    width: 20em;
+    max-width: 100%;
+    display: none; 
+  }
+  
+  
+.message--on {
+    display: block;
+    animation: .4s 0s 1 pop;
+}
+
+h2{
+    text-align: center;
+    color : #4C3E3D;
+}
+
+a{
+    color : #4C3E3D;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.message__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+
+
+
