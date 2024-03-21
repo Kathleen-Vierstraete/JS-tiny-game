@@ -10,9 +10,8 @@ const game = {
         game.gridSize();
         // drawing the grid
         game.generateMap();
-
-
-
+        //detecting the key pressed to make the person move 
+        game.detectKeys();
     },
 
     //definiing the properties first :
@@ -69,7 +68,73 @@ const game = {
         }
     },
 
+    //function to detect the keys that are pressed 
+    detectKeys: function() {
+        document.addEventListener('keydown', function(e) {
+            //preventing the scroll with keydown when playing the game
+            e.preventDefault();
+            //detecting which key was pressed and the direction 
+            //tried keyCode, but depreciated. used event.key instead, with the keyname with "" to get a string
+            // codes for the keys : https://www.toptal.com/developers/keycode
+            switch (e.key) { 
+                //left
+                case "ArrowLeft":
+                case "q":
+                    var directionX = -1;
+                    var directionY = 0;
+                break;
+                //up
+                case "ArrowUp":
+                case "z":
+                    var directionX  = 0;
+                    var directionY  = -1;
+                break;
+                //right
+                case "ArrowRight":
+                case "d":
+                    var directionX  = 1;
+                    var directionY  = 0;
+                break;
+                //down
+                case "ArrowDown":
+                case "s":
+                    var directionX  = 0;
+                    var directionY  = 1;
+                break;
+            }
 
+            if(directionX !== undefined && directionY !== undefined) {
+                // moving the person in the direction in arguments, thanks to the next function
+                game.moveTo(directionX, directionY);
+            }
+    
+            //adding a modal window when the person reaches the goal
+            if (game.personX === game.goalX && game.personY === game.goalY  ){
+                //selecting the element
+                const messElement = document.querySelector(".message"); 
+                //adding the class to display the modal
+                messElement.classList.add("message--on");     
+            }
+        });
+    },
+        
+    // Méthode pour faire bouger le burger
+    moveTo: function(directionX, directionY) {
+        // Les nouvelles coordonnées du burger sont calculées en additionnant les directions aux coordonnées actuelles.
+        var newX = game.personX + directionX;
+        var newY = game.personY + directionY;
+    
+        // Si les coordonnées calculées existent (donc on est encore dans la grille) et qu'on ne tombe pas sur un mur
+        if(game.model[newY] !== undefined && game.model[newY][newX] !== undefined && game.model[newY][newX] != '*') {
+            // On retire la classe burger à l'ancienne cellule
+            document.querySelector('.person').classList.toggle('person');
+            // On l'ajoute à la nouvelle
+            document.querySelector('.x-'+newX+'.y-'+newY).classList.toggle('person');
+            // On stocke les nouvelles coordonnées
+            game.personX = newX;
+            game.personY = newY;
+        }
+    },
 };
 
 //once the page is loaded, let's launch the script
