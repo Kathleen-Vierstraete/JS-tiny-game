@@ -5,7 +5,7 @@ body {
 h1{
     text-align: center;
     margin : 25px;
-    color : #7441b6
+    color : #8e63c7
 }
 
 .playground{
@@ -51,7 +51,7 @@ h1{
 
 .square.wall {
     /* background: #b9a288; */
-    background : url(street-4771269_960_720.jpg); /* free to use image from pixabay */
+    background : url(./img/street-4771269_960_720.jpg); /* free to use image from pixabay */
     background-size: 150px;
 }
 
