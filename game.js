@@ -17,6 +17,9 @@ const game = {
         const closeElement = document.querySelector('.message__close');
         //listening to the event click to close the modal window
         closeElement.addEventListener("click", game.handleCloseButtonClick);
+
+        //getting to the element directly, without a const, to be able to handle the language change
+        document.querySelector('#togBtn').addEventListener('input', game.handleLanguage);
     },
 
     //definiing the properties first :
@@ -148,6 +151,15 @@ const game = {
         //removing the class on to have a display : none
         asideElem.classList.remove("message--on");
       },
+
+    //function to handle the langage change 
+    handleLanguage : function(event) {
+        document.querySelector('.title').textContent = data[event.currentTarget.checked ? 'french' : 'english'].title;
+        document.querySelector('.modal').textContent = data[event.currentTarget.checked ? 'french' : 'english'].modal;
+
+    }
+
+      
 };
 
 //once the page is loaded, let's launch the script
@@ -169,4 +181,16 @@ var model = [
     'xxxx**xxx****',
     'x***xx*****xx',
 ];
+
+//data to be change according to the langage
+var data = {
+    "english": {
+      "title": "Help Kate find new opportunities",
+      "modal" : "Here is my resume"
+    },
+    "french": {
+      "title": "Aidez Kate à trouver de nouvelles opportunités",
+      "modal" : "Voici mon CV"
+    }
+  }
 
