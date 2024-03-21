@@ -12,6 +12,11 @@ const game = {
         game.generateMap();
         //detecting the key pressed to make the person move 
         game.detectKeys();
+
+        // getting the closing element on the modal window
+        const closeElement = document.querySelector('.message__close');
+        //listening to the event click to close the modal window
+        closeElement.addEventListener("click", game.handleCloseButtonClick);
     },
 
     //definiing the properties first :
@@ -118,23 +123,31 @@ const game = {
         });
     },
         
-    // Méthode pour faire bouger le burger
+    // function to make the person move 
     moveTo: function(directionX, directionY) {
-        // Les nouvelles coordonnées du burger sont calculées en additionnant les directions aux coordonnées actuelles.
-        var newX = game.personX + directionX;
-        var newY = game.personY + directionY;
+        //the new coordonates are calculated : adding the directions to the current location
+        let newX = game.personX + directionX;
+        let newY = game.personY + directionY;
     
-        // Si les coordonnées calculées existent (donc on est encore dans la grille) et qu'on ne tombe pas sur un mur
+        //if the coordonates exist and there is no wall :
         if(game.model[newY] !== undefined && game.model[newY][newX] !== undefined && game.model[newY][newX] != '*') {
-            // On retire la classe burger à l'ancienne cellule
+            //taking the class from the previous square
             document.querySelector('.person').classList.toggle('person');
-            // On l'ajoute à la nouvelle
+            //adding the class to the square
             document.querySelector('.x-'+newX+'.y-'+newY).classList.toggle('person');
-            // On stocke les nouvelles coordonnées
+            //stocking the new coordonates
             game.personX = newX;
             game.personY = newY;
         }
     },
+
+    //function to handle closing the modal window
+    handleCloseButtonClick: function() {
+        //selecting the element 
+        const asideElem = document.querySelector('.message');
+        //removing the class on to have a display : none
+        asideElem.classList.remove("message--on");
+      },
 };
 
 //once the page is loaded, let's launch the script
