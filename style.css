@@ -37,8 +37,7 @@ h1{
     top: 0;
     line-height: 48px;
 
-    /* font-size: 40px;
-    color: rgb(20, 71, 37); */
+    font-size: 40px;
 }
 
 .person:before {
